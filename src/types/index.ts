@@ -72,7 +72,8 @@ export type ServiceCategory =
   | 'Social & Content'
   | 'Strategy & Planning'
   | 'Conversion & Funnels'
-  | 'Launch Support';
+  | 'Launch Support'
+  | 'Paid Ads';
 export type WorkCardStatus = 'draft' | 'submitted' | 'in_progress' | 'review' | 'delivered' | 'completed' | 'staged';
 
 export type TeamMember = {

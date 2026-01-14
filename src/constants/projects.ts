@@ -30,5 +30,8 @@ export const PROJECT_TEMPLATES: Record<ServiceCategory, ProjectTemplate[]> = {
     ],
     'Launch Support': [
         { title: 'Product Launch Prep', description: 'Go-to-market execution', category: 'Launch Support' }
+    ],
+    'Paid Ads': [
+        { title: 'Ad Creative Refresh', description: 'New visuals for existing campaigns', category: 'Paid Ads' }
     ]
 };

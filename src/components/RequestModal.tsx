@@ -45,6 +45,9 @@ const TEMPLATES: Record<ServiceCategory, Template[]> = {
     ],
     'Launch Support': [
         { id: 'brand_kit', label: 'Launch Strategy', credits: 20, description: 'Go-to-market plan.', deliverables: ['Timeline', 'Channel Strategy'], inputs: ['Product', 'Launch Date'] }
+    ],
+    'Paid Ads': [
+        { id: 'ad_creative', label: 'Create Ad Creative Pack', credits: 15, description: 'High-performance ad assets.', deliverables: ['10 Hooks', '5 Primary Copies', '3 Angles', 'Storyboard'], inputs: ['Platform', 'Objective', 'Offer', 'Audience', 'Refs'] }
     ]
 };
 
@@ -54,7 +57,8 @@ const ICONS: Record<ServiceCategory, any> = {
     'Video & Production': Video,
     'Strategy & Planning': Zap,
     'Conversion & Funnels': Globe,
-    'Launch Support': Rocket
+    'Launch Support': Rocket,
+    'Paid Ads': Target
 };
 
 export default function RequestModal({ isOpen, onClose }: RequestModalProps) {

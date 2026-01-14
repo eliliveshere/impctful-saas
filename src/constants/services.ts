@@ -55,6 +55,13 @@ export const SERVICE_CATALOG: Record<ServiceCategory, string[]> = {
         'Influencer seeding plan',
         'Launch ad strategy',
         'Post-launch optimization plan'
+    ],
+    'Paid Ads': [
+        'Ad creative setup',
+        'Campaign structuring',
+        'Audience research',
+        'Retargeting setup',
+        'Performance analysis'
     ]
 };
 
@@ -64,5 +71,6 @@ export const CATEGORY_DESCRIPTIONS: Record<ServiceCategory, string> = {
     'Social & Content': 'Organic growth strategies and consistent content flow.',
     'Strategy & Planning': 'Foundational direction and growth roadmaps.',
     'Conversion & Funnels': 'Optimizing the journey from click to customer.',
-    'Launch Support': 'End-to-end support for product or feature launches.'
+    'Launch Support': 'End-to-end support for product or feature launches.',
+    'Paid Ads': 'Direct ad management and creative optimization.'
 };

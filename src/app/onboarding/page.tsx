@@ -23,7 +23,8 @@ export default function OnboardingPage() {
         'Social & Content': [],
         'Strategy & Planning': [],
         'Conversion & Funnels': [],
-        'Launch Support': []
+        'Launch Support': [],
+        'Paid Ads': []
     });
 
     const currentDiagnosticStep = ONBOARDING_STEPS.find(s => s.id === stepIndex);
