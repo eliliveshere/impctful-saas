@@ -104,6 +104,7 @@ export type WorkCard = {
   inputs: Record<string, any>; // Flexible JSON for brief
   deliverables?: Record<string, { status: 'pending' | 'ready', url?: string }>; // Checklist format
   metrics?: Record<string, any>; // Flexible JSON for performance data
+  drivers?: Record<string, any>; // Key performance drivers or analysis
   aiSummary?: string; // "Senior Strategist" tone
   nextSteps?: string[];
   team?: TeamMember[];
