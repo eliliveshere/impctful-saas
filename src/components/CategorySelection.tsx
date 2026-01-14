@@ -15,7 +15,10 @@ const ICONS: Record<ServiceCategory, any> = {
     'Strategy & Planning': Zap,
     'Conversion & Funnels': Globe,
     'Launch Support': Rocket,
-    'Paid Ads': Target // Reusing Target, or I could use something else. Let's use Target as it fits "Ads". Or maybe I should import something else?
+    'Paid Ads': Target, // Reusing Target, or I could use something else. Let's use Target as it fits "Ads". Or maybe I should import something else?
+    'Video': Video,
+    'Social Media': Instagram,
+    'Strategy': Zap
 };
 
 export default function CategorySelection({ onSelect }: CategorySelectionProps) {

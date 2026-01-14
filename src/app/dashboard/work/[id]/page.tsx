@@ -10,7 +10,6 @@ import CsvImporter from '@/components/CsvImporter';
 
 const STATUS_STEPS = [
     { id: 'submitted', label: 'Brief Submitted' },
-    { id: 'clarifying', label: 'Clarifying' },
     { id: 'in_production', label: 'In Production' },
     { id: 'qa', label: 'QA / Review' },
     { id: 'delivered', label: 'Delivered' },

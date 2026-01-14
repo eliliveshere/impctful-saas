@@ -66,14 +66,9 @@ export type Campaign = {
 };
 
 // IMPCTFUL NEW TYPES
-export type ServiceCategory =
-  | 'Video & Production'
-  | 'Paid Growth'
-  | 'Social & Content'
-  | 'Strategy & Planning'
-  | 'Conversion & Funnels'
-  | 'Launch Support'
-  | 'Paid Ads';
+import { ServiceCategory as CategoryType } from '@/constants/categories';
+
+export type ServiceCategory = CategoryType;
 export type WorkCardStatus = 'draft' | 'submitted' | 'in_progress' | 'review' | 'delivered' | 'completed' | 'staged' | 'in_production';
 
 export type TeamMember = {

@@ -33,5 +33,10 @@ export const PROJECT_TEMPLATES: Record<ServiceCategory, ProjectTemplate[]> = {
     ],
     'Paid Ads': [
         { title: 'Ad Creative Refresh', description: 'New visuals for existing campaigns', category: 'Paid Ads' }
-    ]
+    ],
+    'Video': [
+        { title: 'YouTube Production', description: 'Full service video creation', category: 'Video' }
+    ],
+    'Social Media': [],
+    'Strategy': []
 };

@@ -25,15 +25,15 @@ export default function MeetingProjectCard({ project, campaigns }: MeetingProjec
             <div className="flex flex-1 flex-col justify-between p-8 lg:p-12 lg:border-r border-zinc-800/50 bg-gradient-to-b from-zinc-900 to-zinc-950">
                 <div>
                     <div className="flex items-center gap-3 mb-6">
-                        <div className={`h-4 w-4 rounded-full ${project.status === 'Active' ? 'bg-green-500 shadow-[0_0_12px_rgba(34,197,94,0.6)]' : 'bg-zinc-500'}`} />
+                        <div className={`h-4 w-4 rounded-full ${project.status === 'active' ? 'bg-green-500 shadow-[0_0_12px_rgba(34,197,94,0.6)]' : 'bg-zinc-500'}`} />
                         <span className="text-sm font-medium text-zinc-400 uppercase tracking-widest">{project.status} Project</span>
                     </div>
 
                     <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4">{project.name}</h2>
                     <div className="flex flex-wrap gap-2 mb-8">
-                        {project.channels.map(channel => (
-                            <span key={channel} className="px-3 py-1 rounded-full bg-zinc-800 border border-zinc-700 text-sm text-zinc-300">
-                                {channel}
+                        {project.servicesIncluded?.map(service => (
+                            <span key={service} className="px-3 py-1 rounded-full bg-zinc-800 border border-zinc-700 text-sm text-zinc-300">
+                                {service}
                             </span>
                         ))}
                     </div>
@@ -44,7 +44,7 @@ export default function MeetingProjectCard({ project, campaigns }: MeetingProjec
                                 <Target className="h-4 w-4" /> Core Objective
                             </h3>
                             <p className="text-xl text-zinc-100 font-light leading-relaxed">
-                                {project.goal}
+                                {project.description || "No description provided."}
                             </p>
                         </div>
 

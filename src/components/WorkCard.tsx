@@ -10,6 +10,7 @@ const statusConfig: Record<WorkCardStatus, { label: string; color: string; progr
     draft: { label: 'Draft', color: 'bg-zinc-600', progress: 5 },
     submitted: { label: 'Submitted', color: 'bg-zinc-500', progress: 10 },
     in_progress: { label: 'In Progress', color: 'bg-blue-500', progress: 50 },
+    in_production: { label: 'In Production', color: 'bg-blue-600', progress: 60 },
     review: { label: 'In Review', color: 'bg-purple-500', progress: 75 },
     delivered: { label: 'Delivered', color: 'bg-green-500', progress: 90 },
     completed: { label: 'Completed', color: 'bg-emerald-500', progress: 100 },

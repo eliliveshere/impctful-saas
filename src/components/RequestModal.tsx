@@ -10,7 +10,7 @@ interface RequestModalProps {
     onClose: () => void;
 }
 
-type TemplateId = 'ad_creative' | 'ad_opt' | 'ad_launch' | 'social_plan' | 'social_caps' | 'social_repurpose' | 'vid_edit' | 'vid_ugc' | 'vid_yt' | 'strat' | 'landing_page' | 'brand_kit';
+type TemplateId = 'ad_creative' | 'ad_opt' | 'ad_launch' | 'social_plan' | 'social_caps' | 'social_repurpose' | 'vid_edit' | 'vid_ugc' | 'vid_yt' | 'strat' | 'landing_page' | 'brand_kit' | 'vid_yt_full';
 
 interface Template {
     id: TemplateId;
@@ -48,7 +48,12 @@ const TEMPLATES: Record<ServiceCategory, Template[]> = {
     ],
     'Paid Ads': [
         { id: 'ad_creative', label: 'Create Ad Creative Pack', credits: 15, description: 'High-performance ad assets.', deliverables: ['10 Hooks', '5 Primary Copies', '3 Angles', 'Storyboard'], inputs: ['Platform', 'Objective', 'Offer', 'Audience', 'Refs'] }
-    ]
+    ],
+    'Video': [
+        { id: 'vid_yt_full', label: 'YouTube Full Production', credits: 25, description: 'Script, edit, and thumb.', deliverables: ['Final Video', 'Thumbnail', 'Optimization'], inputs: ['Topic', 'References'] }
+    ],
+    'Social Media': [],
+    'Strategy': []
 };
 
 const ICONS: Record<ServiceCategory, any> = {
@@ -58,7 +63,10 @@ const ICONS: Record<ServiceCategory, any> = {
     'Strategy & Planning': Zap,
     'Conversion & Funnels': Globe,
     'Launch Support': Rocket,
-    'Paid Ads': Target
+    'Paid Ads': Target,
+    'Video': Video,
+    'Social Media': Instagram,
+    'Strategy': Zap
 };
 
 export default function RequestModal({ isOpen, onClose }: RequestModalProps) {

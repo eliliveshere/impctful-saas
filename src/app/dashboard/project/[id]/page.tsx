@@ -119,7 +119,7 @@ export default function ProjectPage() {
 
     // 1. Try WorkCards (Real App Logic)
     projectWorkCards.forEach(card => {
-        card.team?.forEach(member => {
+        card.team?.forEach((member: TeamMember) => {
             if (!seenMembers.has(member.name)) {
                 projectTeam.push(member);
                 seenMembers.add(member.name);

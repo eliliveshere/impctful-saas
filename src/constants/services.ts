@@ -62,7 +62,15 @@ export const SERVICE_CATALOG: Record<ServiceCategory, string[]> = {
         'Audience research',
         'Retargeting setup',
         'Performance analysis'
-    ]
+    ],
+    'Video': [
+        'Script review',
+        'Video editing',
+        'Thumbnail design',
+        'Channel optimization'
+    ],
+    'Social Media': [],
+    'Strategy': []
 };
 
 export const CATEGORY_DESCRIPTIONS: Record<ServiceCategory, string> = {
@@ -72,5 +80,8 @@ export const CATEGORY_DESCRIPTIONS: Record<ServiceCategory, string> = {
     'Strategy & Planning': 'Foundational direction and growth roadmaps.',
     'Conversion & Funnels': 'Optimizing the journey from click to customer.',
     'Launch Support': 'End-to-end support for product or feature launches.',
-    'Paid Ads': 'Direct ad management and creative optimization.'
+    'Paid Ads': 'Direct ad management and creative optimization.',
+    'Video': 'End-to-end video production and optimization.',
+    'Social Media': 'Comprehensive social media management.',
+    'Strategy': 'Strategic planning and consulting.'
 };
