@@ -39,15 +39,17 @@ interface AppState {
     addCredits: (amount: number) => void;
 }
 
+const initialDemoData = getDemoDataForNiche('lifestyle');
+
 export const useStore = create<AppState>((set, get) => ({
     user: DEMO_USER,
     workspace: DEMO_WORKSPACE,
-    projects: DEMO_PROJECTS,
-    workCards: DEMO_WORK_CARDS,
+    projects: initialDemoData.projects,
+    workCards: initialDemoData.workCards,
     campaigns: {
         'proj-1': DEMO_CAMPAIGNS,
     },
-    tickets: DEMO_TICKETS,
+    tickets: initialDemoData.tickets,
     creditLedger: [],
 
     onboardingSelections: {} as Record<ServiceCategory, string[]>,
