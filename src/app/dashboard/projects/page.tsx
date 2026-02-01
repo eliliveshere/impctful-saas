@@ -2,11 +2,12 @@
 
 import { useStore } from '@/store/useStore';
 import { useRouter } from 'next/navigation';
-import { Folder, Calendar, ArrowRight, MoreHorizontal, Clock, Target } from 'lucide-react';
+import { Folder, Calendar, ArrowRight, MoreHorizontal, Target } from 'lucide-react';
 import Link from 'next/link';
 
 export default function ProjectsPage() {
     const projects = useStore((state) => state.projects);
+    const workCards = useStore((state) => state.workCards);
     const router = useRouter();
 
     // Group by status
@@ -46,7 +47,11 @@ export default function ProjectsPage() {
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {activeProjects.map(project => (
-                                <ProjectCard key={project.id} project={project} />
+                                <ProjectCard
+                                    key={project.id}
+                                    project={project}
+                                    workCards={workCards.filter(c => c.projectId === project.id)}
+                                />
                             ))}
                         </div>
                     )}
@@ -63,7 +68,11 @@ export default function ProjectsPage() {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {planningProjects.map(project => (
-                                <ProjectCard key={project.id} project={project} />
+                                <ProjectCard
+                                    key={project.id}
+                                    project={project}
+                                    workCards={workCards.filter(c => c.projectId === project.id)}
+                                />
                             ))}
                         </div>
                     </section>
@@ -75,7 +84,11 @@ export default function ProjectsPage() {
                         <h2 className="text-lg font-semibold text-zinc-900 dark:text-white mb-4">Completed</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {completedProjects.map(project => (
-                                <ProjectCard key={project.id} project={project} />
+                                <ProjectCard
+                                    key={project.id}
+                                    project={project}
+                                    workCards={workCards.filter(c => c.projectId === project.id)}
+                                />
                             ))}
                         </div>
                     </section>
@@ -85,9 +98,19 @@ export default function ProjectsPage() {
     );
 }
 
-function ProjectCard({ project }: { project: any }) {
+function ProjectCard({ project, workCards }: { project: any, workCards: any[] }) {
+    // Count items in each stage
+    const counts = {
+        scripting: workCards.filter(c => c.status === 'scripting').length,
+        filming: workCards.filter(c => c.status === 'filming').length,
+        editing: workCards.filter(c => c.status === 'editing').length,
+        distribution: workCards.filter(c => c.status === 'distribution').length
+    };
+
+    const hasActivity = Object.values(counts).some(c => c > 0);
+
     return (
-        <Link href={`/dashboard/project/${project.id}`} className="group block h-full">
+        <Link href={`/dashboard/pipeline`} className="group block h-full">
             <article className="bg-white dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-xl p-6 h-full hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all hover:shadow-lg dark:hover:shadow-indigo-500/5 flex flex-col">
                 <div className="flex items-start justify-between mb-4">
                     <div className="p-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg text-zinc-500 dark:text-zinc-400 group-hover:bg-indigo-500/10 group-hover:text-indigo-500 transition-colors">
@@ -98,13 +121,44 @@ function ProjectCard({ project }: { project: any }) {
                     </button>
                 </div>
 
-                <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-2 leading-tight group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-4 leading-tight group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                     {project.name}
                 </h3>
 
-                <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-6 line-clamp-2 min-h-[40px]">
-                    {project.description || project.roiNarrative || "No description provided for this project."}
-                </p>
+                {/* Status Badges */}
+                <div className="mb-6 min-h-[60px]">
+                    <div className="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2">Active Workflow</div>
+                    {hasActivity ? (
+                        <div className="flex flex-wrap gap-2">
+                            {counts.scripting > 0 && (
+                                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-500/10 text-blue-500 text-xs font-medium border border-blue-500/20">
+                                    <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                                    {counts.scripting} Scripting
+                                </span>
+                            )}
+                            {counts.filming > 0 && (
+                                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-orange-500/10 text-orange-500 text-xs font-medium border border-orange-500/20">
+                                    <span className="h-1.5 w-1.5 rounded-full bg-orange-500" />
+                                    {counts.filming} Filming
+                                </span>
+                            )}
+                            {counts.editing > 0 && (
+                                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-500 text-xs font-medium border border-purple-500/20">
+                                    <span className="h-1.5 w-1.5 rounded-full bg-purple-500" />
+                                    {counts.editing} Editing
+                                </span>
+                            )}
+                            {counts.distribution > 0 && (
+                                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-green-500/10 text-green-500 text-xs font-medium border border-green-500/20">
+                                    <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
+                                    {counts.distribution} Shipping
+                                </span>
+                            )}
+                        </div>
+                    ) : (
+                        <p className="text-sm text-zinc-500 italic">No active cards.</p>
+                    )}
+                </div>
 
                 <div className="mt-auto space-y-4">
                     <div className="flex items-center gap-4 text-xs text-zinc-500 dark:text-zinc-400">
@@ -121,7 +175,7 @@ function ProjectCard({ project }: { project: any }) {
                     </div>
 
                     <div className="pt-4 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between text-sm font-medium">
-                        <span className="text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-200 transition-colors">View Details</span>
+                        <span className="text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-200 transition-colors">View in Pipeline</span>
                         <ArrowRight className="h-4 w-4 text-zinc-400 group-hover:translate-x-1 group-hover:text-indigo-500 transition-all" />
                     </div>
                 </div>
