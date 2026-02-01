@@ -15,6 +15,10 @@ const statusConfig: Record<WorkCardStatus, { label: string; color: string; progr
     delivered: { label: 'Delivered', color: 'bg-green-500', progress: 90 },
     completed: { label: 'Completed', color: 'bg-emerald-500', progress: 100 },
     staged: { label: 'Staged', color: 'bg-indigo-500', progress: 0 },
+    scripting: { label: 'Scripting', color: 'bg-blue-400', progress: 20 },
+    filming: { label: 'Filming', color: 'bg-orange-500', progress: 40 },
+    editing: { label: 'Editing', color: 'bg-purple-500', progress: 60 },
+    distribution: { label: 'Distribution', color: 'bg-green-500', progress: 80 },
 };
 
 export default function WorkCardComponent({ card }: WorkCardProps) {
