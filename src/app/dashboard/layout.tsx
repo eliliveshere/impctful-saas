@@ -50,7 +50,8 @@ export default function DashboardLayout({
         <div className="flex h-screen bg-gray-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 selection:bg-indigo-500/30">
             {/* Sidebar */}
             {/* Sidebar */}
-            <aside className="w-72 h-full overflow-hidden border-r border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-950/95 flex flex-col backdrop-blur-sm">
+            {/* Sidebar (Desktop) */}
+            <aside className="hidden md:flex w-72 h-full overflow-hidden border-r border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-950/95 flex-col backdrop-blur-sm">
                 <div className="p-8 pb-6">
                     <div className="flex items-center gap-3">
                         <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-indigo-500/20 to-indigo-500/5 flex items-center justify-center border border-indigo-500/20 shadow-sm">
@@ -61,125 +62,76 @@ export default function DashboardLayout({
                 </div>
 
                 <div className="flex-1 overflow-y-auto px-6 py-4 space-y-8">
-                    <nav className="space-y-1.5">
-                        <div className="flex items-center gap-1.5 px-3 mb-2 text-zinc-500">
-                            <LayoutDashboard className="h-3 w-3" />
-                            <span className="text-[10px] font-bold uppercase tracking-widest">Platform</span>
-                        </div>
-                        <Link
-                            href="/dashboard"
-                            className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 group ${pathname === '/dashboard' || pathname?.startsWith('/dashboard/work')
-                                ? 'bg-zinc-100 dark:bg-zinc-800/80 text-zinc-900 dark:text-white shadow-inner'
-                                : 'text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/40 hover:text-zinc-900 dark:hover:text-zinc-200'
-                                }`}
-                        >
-                            <LayoutDashboard className={`h-4 w-4 transition-colors ${pathname === '/dashboard' ? 'text-indigo-400' : 'text-zinc-500 group-hover:text-zinc-400'}`} />
-                            Agency Home
-                        </Link>
-
-                        {/* Creator Mode: Pipeline Link */}
-                        {(useStore.getState().demoArchetype === 'youtube') && (
-                            <Link
-                                href="/dashboard/pipeline"
-                                className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 group ${pathname === '/dashboard/pipeline'
-                                    ? 'bg-zinc-100 dark:bg-zinc-800/80 text-zinc-900 dark:text-white shadow-inner'
-                                    : 'text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/40 hover:text-zinc-900 dark:hover:text-zinc-200'
-                                    }`}
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`h-4 w-4 transition-colors ${pathname === '/dashboard/pipeline' ? 'text-indigo-400' : 'text-zinc-500 group-hover:text-zinc-400'}`}><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" /><path d="M3 5v14a2 2 0 0 0 0 4h16v-5" /><path d="M18 12a2 2 0 0 0 0 4h4v-4Z" /></svg>
-                                Pipeline
-                            </Link>
-                        )}
-
-                        <Link
-                            href="/dashboard/tickets"
-                            className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 group ${pathname === '/dashboard/tickets'
-                                ? 'bg-zinc-100 dark:bg-zinc-800/80 text-zinc-900 dark:text-white shadow-inner'
-                                : 'text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/40 hover:text-zinc-900 dark:hover:text-zinc-200'
-                                }`}
-                        >
-                            <MessageSquare className={`h-4 w-4 transition-colors ${pathname === '/dashboard/tickets' ? 'text-indigo-400' : 'text-zinc-500 group-hover:text-zinc-400'}`} />
-                            Tickets
-                        </Link>
-
-                        <Link
-                            href="/dashboard/meeting"
-                            className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 group ${pathname === '/dashboard/meeting'
-                                ? 'bg-zinc-100 dark:bg-zinc-800/80 text-zinc-900 dark:text-white shadow-inner'
-                                : 'text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/40 hover:text-zinc-900 dark:hover:text-zinc-200'
-                                }`}
-                        >
-                            <Sparkles className={`h-4 w-4 transition-colors ${pathname === '/dashboard/meeting' ? 'text-indigo-400' : 'text-zinc-500 group-hover:text-zinc-400'}`} />
-                            Meeting View
-                        </Link>
-                    </nav>
-
-                    <nav className="space-y-1.5">
-                        <div className="flex items-center gap-1.5 px-3 mb-2 text-zinc-500">
-                            <User className="h-3 w-3" />
-                            <span className="text-[10px] font-bold uppercase tracking-widest">Account</span>
-                        </div>
-                        <Link
-                            href="/dashboard/credits"
-                            className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 group ${pathname === '/dashboard/credits'
-                                ? 'bg-zinc-100 dark:bg-zinc-800/80 text-zinc-900 dark:text-white shadow-inner'
-                                : 'text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/40 hover:text-zinc-900 dark:hover:text-zinc-200'
-                                }`}
-                        >
-                            <CreditCard className={`h-4 w-4 transition-colors ${pathname === '/dashboard/credits' ? 'text-indigo-400' : 'text-zinc-500 group-hover:text-zinc-400'}`} />
-                            Credits
-                        </Link>
-
-                        <Link
-                            href="/onboarding"
-                            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/40 hover:text-zinc-900 dark:hover:text-zinc-200 transition-all duration-200 group"
-                        >
-                            <Compass className="h-4 w-4 text-zinc-500 group-hover:text-zinc-400" />
-                            Onboarding
-                        </Link>
-
-                        <button className="flex w-full items-center rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/40 hover:text-zinc-900 dark:hover:text-zinc-200 transition-all duration-200 group">
-                            <Settings className="mr-3 h-4 w-4 text-zinc-500 group-hover:text-zinc-400" />
-                            Settings
-                        </button>
-                    </nav>
-
-                    {/* Workspace & Status Cards */}
-                    <div className="space-y-4 pt-4 border-t border-zinc-200 dark:border-zinc-900">
-                        <div className="rounded-xl bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800/80 p-5 backdrop-blur-sm">
-                            <div className="flex items-center justify-between mb-3">
-                                <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">Available Balance</span>
-                                <Wallet className="h-3.5 w-3.5 text-zinc-600" />
-                            </div>
-                            <div className="text-2xl font-bold text-zinc-900 dark:text-white tracking-tight">
-                                {workspace?.credits || 0}
-                            </div>
-                            <button className="mt-4 w-full rounded-md bg-white dark:bg-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-700 py-2 text-xs font-medium text-zinc-700 dark:text-zinc-300 transition-colors border border-zinc-300 dark:border-zinc-700/50">
-                                Buy Credits
-                            </button>
-                        </div>
-
-                        {/* Feature 9: Global Pause Control */}
-                        <div>
-                            <button
-                                onClick={toggleWorkspaceStatus}
-                                className={`w-full flex items-center justify-between p-3.5 rounded-xl border text-xs font-medium transition-all duration-300 ${workspace?.status === 'paused'
-                                    ? 'bg-amber-500/10 border-amber-500/30 ring-1 ring-amber-500/20'
-                                    : 'bg-zinc-50 dark:bg-zinc-900/30 border-zinc-200 dark:border-zinc-800/50 hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800/50'
-                                    }`}
-                            >
-                                <div className="flex flex-col items-start gap-1">
-                                    <span className={workspace?.status === 'paused' ? 'text-amber-600 dark:text-amber-400 font-semibold' : 'text-zinc-500 dark:text-zinc-400'}>
-                                        {workspace?.status === 'paused' ? 'Work Paused' : 'Active status'}
-                                    </span>
-                                    <span className="text-[10px] text-zinc-600">
-                                        {workspace?.status === 'paused' ? 'Resume when ready' : 'Pause all operations'}
-                                    </span>
+                    {(
+                        /* Existing Sidebar Navigation Content - Moved into a reusable render function or kept inline if simple enough.
+                           For simplicity in this diff, reusing the exact same structure but inside the hidden md:flex aside.
+                        */
+                        <>
+                            <nav className="space-y-1.5">
+                                <div className="flex items-center gap-1.5 px-3 mb-2 text-zinc-500">
+                                    <LayoutDashboard className="h-3 w-3" />
+                                    <span className="text-[10px] font-bold uppercase tracking-widest">Platform</span>
                                 </div>
-                                <div className={`h-2 w-2 rounded-full ring-2 ring-offset-2 ring-offset-zinc-950 ${workspace?.status === 'paused' ? 'bg-amber-500 ring-amber-500/20 animate-pulse' : 'bg-emerald-500/50 ring-emerald-500/10'}`} />
-                            </button>
-                        </div>
-                    </div>
+                                <DesktopNavLink href="/dashboard" icon={LayoutDashboard} label="Agency Home" active={pathname === '/dashboard' || pathname?.startsWith('/dashboard/work')} />
+
+                                {(useStore.getState().demoArchetype === 'youtube') && (
+                                    <DesktopNavLink href="/dashboard/pipeline" icon={PipelineIcon} label="Pipeline" active={pathname === '/dashboard/pipeline'} />
+                                )}
+
+                                <DesktopNavLink href="/dashboard/tickets" icon={MessageSquare} label="Tickets" active={pathname === '/dashboard/tickets'} />
+                                <DesktopNavLink href="/dashboard/meeting" icon={Sparkles} label="Meeting View" active={pathname === '/dashboard/meeting'} />
+                            </nav>
+
+                            <nav className="space-y-1.5">
+                                <div className="flex items-center gap-1.5 px-3 mb-2 text-zinc-500">
+                                    <User className="h-3 w-3" />
+                                    <span className="text-[10px] font-bold uppercase tracking-widest">Account</span>
+                                </div>
+                                <DesktopNavLink href="/dashboard/credits" icon={CreditCard} label="Credits" active={pathname === '/dashboard/credits'} />
+                                <DesktopNavLink href="/onboarding" icon={Compass} label="Onboarding" active={false} />
+                                <button className="flex w-full items-center rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/40 hover:text-zinc-900 dark:hover:text-zinc-200 transition-all duration-200 group">
+                                    <Settings className="mr-3 h-4 w-4 text-zinc-500 group-hover:text-zinc-400" />
+                                    Settings
+                                </button>
+                            </nav>
+
+                            {/* Workspace & Status Cards */}
+                            <div className="space-y-4 pt-4 border-t border-zinc-200 dark:border-zinc-900">
+                                <div className="rounded-xl bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800/80 p-5 backdrop-blur-sm">
+                                    <div className="flex items-center justify-between mb-3">
+                                        <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">Available Balance</span>
+                                        <Wallet className="h-3.5 w-3.5 text-zinc-600" />
+                                    </div>
+                                    <div className="text-2xl font-bold text-zinc-900 dark:text-white tracking-tight">
+                                        {workspace?.credits || 0}
+                                    </div>
+                                    <button className="mt-4 w-full rounded-md bg-white dark:bg-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-700 py-2 text-xs font-medium text-zinc-700 dark:text-zinc-300 transition-colors border border-zinc-300 dark:border-zinc-700/50">
+                                        Buy Credits
+                                    </button>
+                                </div>
+
+                                <div>
+                                    <button
+                                        onClick={toggleWorkspaceStatus}
+                                        className={`w-full flex items-center justify-between p-3.5 rounded-xl border text-xs font-medium transition-all duration-300 ${workspace?.status === 'paused'
+                                            ? 'bg-amber-500/10 border-amber-500/30 ring-1 ring-amber-500/20'
+                                            : 'bg-zinc-50 dark:bg-zinc-900/30 border-zinc-200 dark:border-zinc-800/50 hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800/50'
+                                            }`}
+                                    >
+                                        <div className="flex flex-col items-start gap-1">
+                                            <span className={workspace?.status === 'paused' ? 'text-amber-600 dark:text-amber-400 font-semibold' : 'text-zinc-500 dark:text-zinc-400'}>
+                                                {workspace?.status === 'paused' ? 'Work Paused' : 'Active status'}
+                                            </span>
+                                            <span className="text-[10px] text-zinc-600">
+                                                {workspace?.status === 'paused' ? 'Resume when ready' : 'Pause all operations'}
+                                            </span>
+                                        </div>
+                                        <div className={`h-2 w-2 rounded-full ring-2 ring-offset-2 ring-offset-zinc-950 ${workspace?.status === 'paused' ? 'bg-amber-500 ring-amber-500/20 animate-pulse' : 'bg-emerald-500/50 ring-emerald-500/10'}`} />
+                                    </button>
+                                </div>
+                            </div>
+                        </>
+                    )}
                 </div>
 
                 <div className="border-t border-zinc-200 dark:border-zinc-800/50 p-4">
@@ -205,10 +157,58 @@ export default function DashboardLayout({
                 </div>
             </aside>
 
+            {/* Mobile Bottom Nav */}
+            <nav className="md:hidden fixed bottom-6 left-6 right-6 h-16 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-lg border border-zinc-200 dark:border-zinc-800 rounded-2xl flex items-center justify-around px-2 z-50 shadow-2xl shadow-zinc-900/20">
+                <MobileNavLink href="/dashboard" icon={LayoutDashboard} active={pathname === '/dashboard'} />
+
+                {(useStore.getState().demoArchetype === 'youtube') && (
+                    <MobileNavLink href="/dashboard/pipeline" icon={PipelineIcon} active={pathname === '/dashboard/pipeline'} />
+                )}
+
+                <div className="relative -top-5">
+                    <button onClick={toggleTheme} className="h-12 w-12 rounded-full bg-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-500/40">
+                        {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                    </button>
+                </div>
+
+                <MobileNavLink href="/dashboard/tickets" icon={MessageSquare} active={pathname === '/dashboard/tickets'} />
+                <MobileNavLink href="/dashboard/meeting" icon={User} active={pathname === '/dashboard/credits'} />
+            </nav>
+
             {/* Main Content */}
-            <div className="flex-1 overflow-auto">
+            <div className="flex-1 overflow-auto pb-24 md:pb-0">
                 {children}
             </div>
         </div >
     );
+}
+
+function DesktopNavLink({ href, icon: Icon, label, active }: any) {
+    return (
+        <Link
+            href={href}
+            className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 group ${active
+                ? 'bg-zinc-100 dark:bg-zinc-800/80 text-zinc-900 dark:text-white shadow-inner'
+                : 'text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/40 hover:text-zinc-900 dark:hover:text-zinc-200'
+                }`}
+        >
+            <Icon className={`h-4 w-4 transition-colors ${active ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-500 group-hover:text-zinc-400'}`} />
+            {label}
+        </Link>
+    );
+}
+
+function MobileNavLink({ href, icon: Icon, active }: any) {
+    return (
+        <Link
+            href={href}
+            className={`p-2 rounded-xl transition-colors ${active ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/10' : 'text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200'}`}
+        >
+            <Icon className="h-6 w-6" />
+        </Link>
+    );
+}
+
+function PipelineIcon({ className }: { className?: string }) {
+    return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" /><path d="M3 5v14a2 2 0 0 0 0 4h16v-5" /><path d="M18 12a2 2 0 0 0 0 4h4v-4Z" /></svg>;
 }
