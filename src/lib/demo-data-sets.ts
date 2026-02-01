@@ -143,11 +143,39 @@ const LIFESTYLE_SET: DemoSet = {
             status: "active",
             createdAt: daysAgo(3),
             updatedAt: daysAgo(0)
+        },
+        {
+            id: 'proj-life-2',
+            workspaceId: BASE_WORKSPACE_ID,
+            name: "Summer Vibes Reels",
+            type: "Social Media",
+            status: "active",
+            createdAt: daysAgo(2),
+            updatedAt: daysAgo(1)
+        },
+        {
+            id: 'proj-life-3',
+            workspaceId: BASE_WORKSPACE_ID,
+            name: "Q3 Brand Strategy",
+            type: "Strategy",
+            status: "planning",
+            createdAt: daysAgo(5),
+            updatedAt: daysAgo(2)
+        },
+        {
+            id: 'proj-life-4',
+            workspaceId: BASE_WORKSPACE_ID,
+            name: "Merch Launch Ads",
+            type: "Paid Media",
+            status: "active",
+            createdAt: daysAgo(1),
+            updatedAt: daysAgo(0)
         }
     ],
     workCards: [
+        // Project 1: YouTube
         {
-            id: 'card-life-script-1',
+            id: 'card-life-1-script',
             workspaceId: BASE_WORKSPACE_ID,
             projectId: 'proj-life-1',
             serviceCategory: 'Video',
@@ -162,7 +190,7 @@ const LIFESTYLE_SET: DemoSet = {
             aiSummary: 'Narrative arc proposed: Departure -> Arrival -> Conflict -> Resolution.'
         },
         {
-            id: 'card-life-film-1',
+            id: 'card-life-1-film',
             workspaceId: BASE_WORKSPACE_ID,
             projectId: 'proj-life-1',
             serviceCategory: 'Video',
@@ -176,35 +204,71 @@ const LIFESTYLE_SET: DemoSet = {
             updatedAt: daysAgo(2),
             aiSummary: 'Shot list checked off.'
         },
+
+        // Project 2: Social Media
         {
-            id: 'card-life-edit-1',
+            id: 'card-life-2-script',
             workspaceId: BASE_WORKSPACE_ID,
-            projectId: 'proj-life-1',
-            serviceCategory: 'Video',
-            serviceType: 'Video Edit',
-            title: 'Edit - NYC Vlog',
-            status: 'editing',
-            revisionsAllowed: 1,
-            creditsUsed: 20,
-            inputs: { style: 'Cinematic', music: 'Lo-fi' },
-            createdAt: daysAgo(3),
-            updatedAt: daysAgo(0),
-            aiSummary: 'Color grading completed. Reviewing transition pacing.'
+            projectId: 'proj-life-2',
+            serviceCategory: 'Social Media',
+            serviceType: 'Viral Hook Writing',
+            title: 'Hooks - Reel Bundle',
+            status: 'scripting',
+            revisionsAllowed: 2,
+            creditsUsed: 6,
+            inputs: { topic: 'Summer Outfits' },
+            createdAt: daysAgo(2),
+            updatedAt: daysAgo(1),
+            aiSummary: 'Generated 5 hook variations for rapid testing.'
         },
         {
-            id: 'card-life-dist-1',
+            id: 'card-life-2-dist',
             workspaceId: BASE_WORKSPACE_ID,
-            projectId: 'proj-life-1',
-            serviceCategory: 'Video',
+            projectId: 'proj-life-2',
+            serviceCategory: 'Social Media',
             serviceType: 'Post Scheduling',
-            title: 'IG Reels Cut',
+            title: 'Schedule - IG Carousel',
             status: 'distribution',
             revisionsAllowed: 0,
-            creditsUsed: 5,
+            creditsUsed: 2,
             inputs: { platform: 'Instagram' },
             createdAt: daysAgo(1),
             updatedAt: daysAgo(0),
-            aiSummary: 'Scheduled for 6pm EST peak time.'
+            aiSummary: 'Posted to buffer.'
+        },
+
+        // Project 3: Strategy
+        {
+            id: 'card-life-3-audit',
+            workspaceId: BASE_WORKSPACE_ID,
+            projectId: 'proj-life-3',
+            serviceCategory: 'Strategy',
+            serviceType: 'Channel Audit',
+            title: 'Audit - Current Performance',
+            status: 'scripting', // Strategy often starts in research/scripting phase visually
+            revisionsAllowed: 0,
+            creditsUsed: 50,
+            inputs: { focus: 'Retention' },
+            createdAt: daysAgo(5),
+            updatedAt: daysAgo(4),
+            aiSummary: 'Analyzing last 10 videos against benchmarks.'
+        },
+
+        // Project 4: Paid Media
+        {
+            id: 'card-life-4-create',
+            workspaceId: BASE_WORKSPACE_ID,
+            projectId: 'proj-life-4',
+            serviceCategory: 'Paid Ads',
+            serviceType: 'UGC Creative',
+            title: 'Ad - Unboxing Video',
+            status: 'editing',
+            revisionsAllowed: 2,
+            creditsUsed: 30,
+            inputs: { product: 'Hoodie' },
+            createdAt: daysAgo(1),
+            updatedAt: daysAgo(0),
+            aiSummary: 'First cut of UGC ad ready for review.'
         }
     ],
     tickets: [

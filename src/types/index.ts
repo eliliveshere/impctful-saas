@@ -20,7 +20,7 @@ export type Workspace = {
   status: WorkspaceStatus;
 }
 
-export type ProjectType = 'YouTube' | 'Paid Ads' | 'Social Media' | 'Strategy' | 'Other';
+export type ProjectType = 'YouTube' | 'Paid Ads' | 'Paid Media' | 'Social Media' | 'Strategy' | 'Other';
 export type ReviewPreference = 'consolidated' | 'stage_by_stage';
 export type ProjectStatus = 'planning' | 'active' | 'completed' | 'paused';
 export type InteractionPreference = 'minimal' | 'balanced' | 'hands_on';
