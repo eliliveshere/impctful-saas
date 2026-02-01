@@ -39,7 +39,7 @@ export default function ProductionPipeline({ onSelectProject }: ProductionPipeli
     const getColumnCards = (columnType: 'scripting' | 'filming' | 'editing' | 'distribution') => {
         return filteredCards.filter(card => {
             // Filter out completed or non-active if desired, but for now show all "active"
-            if (card.status === 'completed' || card.status === 'archived') return false;
+            if (card.status === 'completed') return false;
 
             const lowerType = card.serviceType.toLowerCase();
             const lowerTitle = card.title.toLowerCase();
