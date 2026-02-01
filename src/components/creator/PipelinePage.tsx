@@ -15,7 +15,7 @@ export default function PipelinePage() {
     // Conditional Rendering for Active Stage
     if (selectedProject) {
         return (
-            <div className="max-w-[1600px] mx-auto p-8 lg:p-12">
+            <div className="max-w-[1600px] mx-auto p-4 pb-32 lg:p-12">
                 {selectedProject.status === 'scripting' && <ScriptingView project={selectedProject} onBack={() => setSelectedProject(null)} />}
                 {selectedProject.status === 'filming' && <FilmingView project={selectedProject} onBack={() => setSelectedProject(null)} />}
                 {selectedProject.status === 'editing' && <EditingView project={selectedProject} onBack={() => setSelectedProject(null)} />}
@@ -33,10 +33,10 @@ export default function PipelinePage() {
     }
 
     return (
-        <div className="max-w-[1600px] mx-auto p-8 lg:p-12 animate-in fade-in duration-700">
+        <div className="max-w-[1600px] mx-auto p-4 pb-32 lg:p-12 animate-in fade-in duration-700">
             <header className="mb-8">
-                <h1 className="text-3xl font-bold text-white tracking-tight mb-2">Production Pipeline</h1>
-                <p className="text-zinc-400">Manage your active content production workflow.</p>
+                <h1 className="text-3xl font-bold text-zinc-900 dark:text-white tracking-tight mb-2">Production Pipeline</h1>
+                <p className="text-zinc-500 dark:text-zinc-400">Manage your active content production workflow.</p>
             </header>
 
             <ProductionPipeline onSelectProject={setSelectedProject} />

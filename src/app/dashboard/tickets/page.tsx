@@ -2,7 +2,7 @@
 
 import { useStore } from '@/store/useStore';
 import { Ticket, TicketMessage, TicketStatus, TicketType, TicketPriority } from '@/types';
-import { AlertCircle, CheckCircle2, Clock, MessageSquare, Plus, Send, X, Filter, Link as LinkIcon, AlertTriangle } from 'lucide-react';
+import { AlertCircle, CheckCircle2, Clock, MessageSquare, Plus, Send, X, Filter, Link as LinkIcon, AlertTriangle, ArrowLeft } from 'lucide-react';
 import { useState } from 'react';
 import Link from 'next/link';
 
@@ -133,7 +133,7 @@ export default function TicketsPage() {
         <div className="flex h-[calc(100vh-64px)] overflow-hidden bg-zinc-950">
 
             {/* Sidebar List */}
-            <div className="w-96 border-r border-zinc-800 flex flex-col bg-zinc-900/30">
+            <div className={`w-full md:w-96 border-r border-zinc-800 flex flex-col bg-zinc-900/30 ${selectedTicketId ? 'hidden md:flex' : 'flex'}`}>
                 <div className="p-4 border-b border-zinc-800">
                     <div className="flex items-center justify-between mb-4">
                         <h2 className="text-lg font-semibold text-white">Tickets</h2>
@@ -198,28 +198,36 @@ export default function TicketsPage() {
             </div>
 
             {/* Main Content: Conversation */}
-            <div className="flex-1 flex flex-col bg-zinc-950 z-0">
+            <div className={`flex-1 flex-col bg-zinc-950 z-0 ${selectedTicketId ? 'flex' : 'hidden md:flex'}`}>
                 {selectedTicket ? (
                     <>
                         {/* Header */}
-                        <div className="h-20 border-b border-zinc-800 flex items-center justify-between px-6 bg-zinc-900/20">
-                            <div>
-                                <h2 className="text-lg font-semibold text-white flex items-center gap-3">
-                                    {selectedTicket.title}
-                                    {getPriorityBadge(selectedTicket.priority)}
-                                </h2>
-                                <div className="flex items-center gap-3 mt-1 text-xs text-zinc-500 uppercase tracking-wider">
-                                    <span>{selectedTicket.type}</span>
-                                    <span>•</span>
-                                    <span>ID: {selectedTicket.id}</span>
+                        <div className="h-20 border-b border-zinc-800 flex items-center justify-between px-4 md:px-6 bg-zinc-900/20">
+                            <div className="flex items-center gap-3">
+                                <button
+                                    onClick={() => setSelectedTicketId(null)}
+                                    className="md:hidden p-2 -ml-2 text-zinc-400 hover:text-white"
+                                >
+                                    <ArrowLeft className="h-5 w-5" />
+                                </button>
+                                <div>
+                                    <h2 className="text-lg font-semibold text-white flex items-center gap-3">
+                                        {selectedTicket.title}
+                                        {getPriorityBadge(selectedTicket.priority)}
+                                    </h2>
+                                    <div className="flex items-center gap-3 mt-1 text-xs text-zinc-500 uppercase tracking-wider">
+                                        <span>{selectedTicket.type}</span>
+                                        <span>•</span>
+                                        <span>ID: {selectedTicket.id}</span>
+                                    </div>
                                 </div>
+                                {linkedCard && (
+                                    <Link href={`/dashboard/work/${linkedCard.id}`} className="flex items-center gap-2 text-xs text-indigo-400 hover:text-indigo-300 bg-indigo-500/10 px-3 py-1.5 rounded-full border border-indigo-500/20">
+                                        <LinkIcon className="h-3 w-3" />
+                                        Linked: {linkedCard.title}
+                                    </Link>
+                                )}
                             </div>
-                            {linkedCard && (
-                                <Link href={`/dashboard/work/${linkedCard.id}`} className="flex items-center gap-2 text-xs text-indigo-400 hover:text-indigo-300 bg-indigo-500/10 px-3 py-1.5 rounded-full border border-indigo-500/20">
-                                    <LinkIcon className="h-3 w-3" />
-                                    Linked: {linkedCard.title}
-                                </Link>
-                            )}
                         </div>
 
                         {/* Waiting on Client Banner */}

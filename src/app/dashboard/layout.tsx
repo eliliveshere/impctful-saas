@@ -89,10 +89,10 @@ export default function DashboardLayout({
                                 </div>
                                 <DesktopNavLink href="/dashboard/credits" icon={CreditCard} label="Credits" active={pathname === '/dashboard/credits'} />
                                 <DesktopNavLink href="/onboarding" icon={Compass} label="Onboarding" active={false} />
-                                <button className="flex w-full items-center rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/40 hover:text-zinc-900 dark:hover:text-zinc-200 transition-all duration-200 group">
+                                <Link href="/dashboard/settings" className="flex w-full items-center rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/40 hover:text-zinc-900 dark:hover:text-zinc-200 transition-all duration-200 group">
                                     <Settings className="mr-3 h-4 w-4 text-zinc-500 group-hover:text-zinc-400" />
                                     Settings
-                                </button>
+                                </Link>
                             </nav>
 
                             {/* Workspace & Status Cards */}
@@ -165,18 +165,14 @@ export default function DashboardLayout({
                     <MobileNavLink href="/dashboard/pipeline" icon={PipelineIcon} active={pathname === '/dashboard/pipeline'} />
                 )}
 
-                <div className="relative -top-5">
-                    <button onClick={toggleTheme} className="h-12 w-12 rounded-full bg-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-500/40">
-                        {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-                    </button>
-                </div>
+                <MobileNavLink href="/dashboard/settings" icon={Settings} active={pathname === '/dashboard/settings'} />
 
                 <MobileNavLink href="/dashboard/tickets" icon={MessageSquare} active={pathname === '/dashboard/tickets'} />
-                <MobileNavLink href="/dashboard/meeting" icon={User} active={pathname === '/dashboard/credits'} />
+                <MobileNavLink href="/dashboard/meeting" icon={Sparkles} active={pathname === '/dashboard/meeting'} />
             </nav>
 
             {/* Main Content */}
-            <div className="flex-1 overflow-auto pb-24 md:pb-0">
+            <div className="flex-1 overflow-auto pb-32 md:pb-0">
                 {children}
             </div>
         </div >

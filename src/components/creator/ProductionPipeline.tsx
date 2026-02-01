@@ -29,7 +29,7 @@ export default function ProductionPipeline({ onSelectProject }: ProductionPipeli
                 Production Pipeline
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-[500px]">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-auto md:h-[500px]">
                 {/* COLUMN 1: Scripting */}
                 <PipelineColumn title="Scripting" icon={FileText} color="blue">
                     {MOCK_PIPELINE.filter(v => v.status === 'scripting').map(video => (

@@ -79,6 +79,38 @@ export default function ScriptingView({ project, onBack }: ScriptingViewProps) {
                             <p className="border-l-2 border-indigo-500 pl-3">Compare cost vs open source alternatives.</p>
                         </div>
                     </div>
+
+                    {/* 3. Personalized Hook & Format Library */}
+                    <div className="p-6 rounded-xl bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800 shadow-sm">
+                        <h3 className="text-sm font-bold text-white mb-4 flex items-center gap-2">
+                            <FileText className="h-4 w-4 text-emerald-400" />
+                            Your Hook Library
+                        </h3>
+
+                        <div className="space-y-4">
+                            <div>
+                                <p className="text-[10px] uppercase tracking-wider font-semibold text-zinc-500 mb-2">Top Performing Styles</p>
+                                <div className="space-y-2">
+                                    <div className="flex items-center justify-between text-xs p-2 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">
+                                        <span>"Negative/Warning"</span>
+                                        <span className="font-bold">+40% Retention</span>
+                                    </div>
+                                    <div className="flex items-center justify-between text-xs p-2 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">
+                                        <span>"Story/Vlog Intro"</span>
+                                        <span className="font-bold">+15% Retention</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p className="text-[10px] uppercase tracking-wider font-semibold text-zinc-500 mb-2">Avoid (Underperforming)</p>
+                                <div className="flex items-center justify-between text-xs p-2 rounded bg-red-500/10 border border-red-500/20 text-red-300">
+                                    <span>"Generic Hello"</span>
+                                    <span className="font-bold">-20% Dip</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Right: Editor */}
