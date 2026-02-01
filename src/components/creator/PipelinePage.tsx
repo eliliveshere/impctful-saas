@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import ProductionPipeline, { VideoProject } from './ProductionPipeline';
+import ProductionPipeline from './ProductionPipeline';
+import { WorkCard } from '@/types';
 
 // Stage Views
 import ScriptingView from './stages/ScriptingView';
@@ -10,7 +11,7 @@ import EditingView from './stages/EditingView';
 import DistributionView from './stages/DistributionView';
 
 export default function PipelinePage() {
-    const [selectedProject, setSelectedProject] = useState<VideoProject | null>(null);
+    const [selectedProject, setSelectedProject] = useState<WorkCard | null>(null);
 
     // Conditional Rendering for Active Stage
     if (selectedProject) {
