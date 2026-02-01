@@ -9,23 +9,25 @@ export default function EditingView({ project, onBack }: EditingViewProps) {
     return (
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             {/* Header */}
-            <div className="flex items-center gap-4 mb-8">
-                <button
-                    onClick={onBack}
-                    className="p-2 rounded-lg hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors"
-                >
-                    <ArrowLeft className="h-5 w-5" />
-                </button>
-                <div>
-                    <h2 className="text-2xl font-bold text-white">{project.title}</h2>
-                    <div className="flex items-center gap-2 text-sm text-zinc-400">
-                        <span className="px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 text-xs font-medium border border-purple-500/20">Editing (Frame.io)</span>
-                        <span>•</span>
-                        <span>V2 Pending Review</span>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                <div className="flex items-center gap-4">
+                    <button
+                        onClick={onBack}
+                        className="p-2 rounded-lg hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors"
+                    >
+                        <ArrowLeft className="h-5 w-5" />
+                    </button>
+                    <div>
+                        <h2 className="text-2xl font-bold text-white leading-tight">{project.title}</h2>
+                        <div className="flex items-center gap-2 text-sm text-zinc-400 mt-1">
+                            <span className="px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 text-xs font-medium border border-purple-500/20">Editing (Frame.io)</span>
+                            <span>•</span>
+                            <span>V2 Pending Review</span>
+                        </div>
                     </div>
                 </div>
-                <div className="ml-auto flex items-center gap-3">
-                    <button className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-sm font-medium transition-colors shadow-lg shadow-indigo-500/20">
+                <div className="flex items-center gap-3 w-full md:w-auto">
+                    <button className="w-full md:w-auto flex items-center justify-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-sm font-medium transition-colors shadow-lg shadow-indigo-500/20">
                         Approve Final Cut
                     </button>
                 </div>
