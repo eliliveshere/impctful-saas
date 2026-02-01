@@ -145,3 +145,33 @@ export type Ticket = {
   createdAt: string;
   updatedAt: string;
 };
+
+export interface CreatorProfile {
+  channelName: string;
+  primaryPlatform: 'youtube' | 'instagram' | 'both';
+  niche: string;
+  audienceLevel: 'beginner' | 'intermediate' | 'expert';
+  targetAudienceOneLiner: string;
+  contentTypes: string[];
+  formats: string[];
+  typicalLength: string;
+  tone: 'punchy' | 'educational' | 'calm' | 'comedic' | 'inspirational' | 'analytical';
+  pacing: 'fast' | 'medium' | 'slow';
+  ctaStyle: 'subtle' | 'direct' | 'none';
+  swearing: 'never' | 'sometimes' | 'often';
+  referenceCreators?: string;
+  cadenceGoal: '1wk' | '2wk' | '3wk' | 'daily';
+  primaryGoal: 'growth' | 'leads' | 'sales' | 'brand' | 'community';
+  biggestConstraint: 'time' | 'editing' | 'ideas' | 'consistency' | 'team';
+  integrations: {
+    youtube: boolean;
+    instagram: boolean;
+    googleDrive: boolean;
+    metaAds: boolean;
+  };
+  workflow: {
+    pipelineTemplate: 'simple' | 'team';
+    requireApproval: boolean;
+    editorEmail?: string;
+  };
+}

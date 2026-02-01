@@ -2,6 +2,7 @@
 
 import { Zap, TrendingUp, Lightbulb, BarChart, Tag, ArrowUp, ArrowDown, Activity, Sun, Moon } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useStore } from '@/store/useStore';
 
 export const MOCK_TRENDS = [
     {
@@ -47,6 +48,7 @@ export const MOCK_TRENDS = [
 ];
 
 export default function MorningBriefingDashboard() {
+    const creatorProfile = useStore((state) => state.creatorProfile);
     const [isDark, setIsDark] = useState(true);
 
     useEffect(() => {
@@ -103,10 +105,13 @@ export default function MorningBriefingDashboard() {
                     <div className="bg-gradient-to-br from-indigo-50 to-white dark:from-indigo-950/20 dark:to-zinc-900 border border-indigo-100 dark:border-indigo-500/20 rounded-xl p-5 shadow-sm">
                         <div className="flex justify-between items-start mb-3">
                             <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 bg-indigo-100 dark:bg-indigo-900/30 px-2 py-0.5 rounded">High Confidence</span>
+                            {creatorProfile?.niche && (
+                                <span className="text-[10px] text-zinc-400" title={`Matches your ${creatorProfile.niche} niche`}>Why?</span>
+                            )}
                         </div>
                         <h3 className="font-semibold text-zinc-900 dark:text-white mb-2">"Is Cursor the End of VS Code?"</h3>
                         <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4">
-                            Your "AI Coding" cluster has 2x higher velocity than average. Viewers stopped scrolling at "VS Code" in last week's hook.
+                            Your "{creatorProfile?.niche || 'Tech'}" cluster has 2x higher velocity than average. Viewers stopped scrolling at "VS Code" in last week's hook.
                         </p>
                         <div className="flex items-center gap-2 pt-3 border-t border-indigo-100 dark:border-indigo-500/10">
                             <span className="text-[10px] text-zinc-500">Based on:</span>
@@ -118,10 +123,13 @@ export default function MorningBriefingDashboard() {
                     <div className="bg-white dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-xl p-5 shadow-sm">
                         <div className="flex justify-between items-start mb-3">
                             <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/30 px-2 py-0.5 rounded">Trending Format</span>
+                            {creatorProfile?.formats?.[0] && (
+                                <span className="text-[10px] text-zinc-400" title={`Matches your interest in ${creatorProfile.formats[0]}s`}>Why?</span>
+                            )}
                         </div>
-                        <h3 className="font-semibold text-zinc-900 dark:text-white mb-2">"Day in the Life: Senior Engineer"</h3>
+                        <h3 className="font-semibold text-zinc-900 dark:text-white mb-2">"Day in the Life: {creatorProfile?.niche || 'Senior'} Expert"</h3>
                         <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4">
-                            Lifestyle vlogs are seeing +45% retention uptick on weekends. Your audience is asking for "Routine" content.
+                            {creatorProfile?.contentTypes?.includes('vlog') ? 'Vlog' : 'Lifestyle'} videos are seeing +45% retention uptick on weekends. Your audience is asking for "Routine" content.
                         </p>
                         <div className="flex items-center gap-2 pt-3 border-t border-zinc-100 dark:border-zinc-800">
                             <span className="text-[10px] text-zinc-500">Based on:</span>
@@ -133,10 +141,13 @@ export default function MorningBriefingDashboard() {
                     <div className="bg-white dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-xl p-5 shadow-sm">
                         <div className="flex justify-between items-start mb-3">
                             <span className="text-[10px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/30 px-2 py-0.5 rounded">Gap Fill</span>
+                            {creatorProfile?.primaryGoal && (
+                                <span className="text-[10px] text-zinc-400" title={`Helps your goal of ${creatorProfile.primaryGoal}`}>Why?</span>
+                            )}
                         </div>
-                        <h3 className="font-semibold text-zinc-900 dark:text-white mb-2">"React 19: Everything Changed"</h3>
+                        <h3 className="font-semibold text-zinc-900 dark:text-white mb-2">"{creatorProfile?.niche || 'React'} 19: Everything Changed"</h3>
                         <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4">
-                            You haven't covered React core updates in 45 days. Competitors are gaining rank on this keyword.
+                            You haven't covered {creatorProfile?.niche || 'React'} core updates in 45 days. Competitors are gaining rank on this keyword.
                         </p>
                         <div className="flex items-center gap-2 pt-3 border-t border-zinc-100 dark:border-zinc-800">
                             <span className="text-[10px] text-zinc-500">Based on:</span>

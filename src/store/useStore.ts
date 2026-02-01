@@ -1,16 +1,19 @@
 import { create } from 'zustand';
-import { Campaign, CreditAction, CreditLedger, Project, User, WorkCard, Workspace, Ticket, TicketMessage, TicketStatus, InteractionPreference, ServiceCategory } from '@/types';
+import { Campaign, CreditAction, CreditLedger, Project, User, WorkCard, Workspace, Ticket, TicketMessage, TicketStatus, InteractionPreference, ServiceCategory, CreatorProfile } from '@/types';
 
 interface AppState {
     user: User | null;
     workspace: Workspace | null;
+    creatorProfile: CreatorProfile | null;
     projects: Project[];
     workCards: WorkCard[];
-    campaigns: Record<string, any>;
     tickets: Ticket[];
     creditLedger: CreditLedger[];
+    campaigns: Record<string, any>;
 
     // Actions
+    setCreatorProfile: (profile: CreatorProfile) => void;
+    getCreatorProfileContext: () => Partial<CreatorProfile> | null;
     onboardingSelections: Record<ServiceCategory, string[]>;
 
     initializeUser: (brandName: string, website?: string, channels?: string[], brandTone?: string, interactionPreference?: InteractionPreference) => void;
@@ -174,10 +177,34 @@ export const useStore = create<AppState>((set, get) => ({
     demoArchetype: 'youtube',
     setDemoArchetype: (archetype) => set({ demoArchetype: archetype }),
 
+
+
     toggleWorkspaceStatus: () =>
         set((state) => {
             if (!state.workspace) return {};
             const newStatus = state.workspace.status === 'paused' ? 'active' : 'paused';
             return { workspace: { ...state.workspace, status: newStatus } };
         }),
+
+    // Default null
+    creatorProfile: null,
+
+    setCreatorProfile: (profile) => set({ creatorProfile: profile }),
+
+    getCreatorProfileContext: () => {
+        const { creatorProfile } = get();
+        if (!creatorProfile) return null;
+        return {
+            niche: creatorProfile.niche,
+            audienceLevel: creatorProfile.audienceLevel,
+            contentTypes: creatorProfile.contentTypes,
+            formats: creatorProfile.formats,
+            typicalLength: creatorProfile.typicalLength,
+            tone: creatorProfile.tone,
+            cadenceGoal: creatorProfile.cadenceGoal,
+            primaryGoal: creatorProfile.primaryGoal,
+            biggestConstraint: creatorProfile.biggestConstraint,
+            integrations: creatorProfile.integrations
+        };
+    },
 }));
