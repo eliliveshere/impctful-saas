@@ -27,11 +27,12 @@ export default function MeetingPage() {
     return (
         <div className="min-h-screen bg-zinc-950 text-white flex flex-col font-sans selection:bg-indigo-500/30">
             {/* Header */}
-            <header className="flex-none px-8 py-6 flex items-center justify-between border-b border-zinc-800/50 bg-zinc-900/10 backdrop-blur-md sticky top-0 z-50">
+            {/* Header */}
+            <header className="flex-none px-4 py-4 md:px-8 md:py-6 flex flex-col md:flex-row md:items-center justify-between border-b border-zinc-800/50 bg-zinc-900/10 backdrop-blur-md sticky top-0 z-50 gap-4">
                 <div className="flex items-center gap-4">
                     <Link
                         href="/dashboard"
-                        className="flex items-center justify-center h-10 w-10 rounded-full bg-zinc-800 hover:bg-zinc-700 transition-colors text-zinc-400 hover:text-white"
+                        className="flex items-center justify-center h-10 w-10 rounded-full bg-zinc-800 hover:bg-zinc-700 transition-colors text-zinc-400 hover:text-white shrink-0"
                         title="Exit Presentation"
                     >
                         <ArrowLeft className="h-5 w-5" />
@@ -44,14 +45,14 @@ export default function MeetingPage() {
                         <p className="text-sm text-zinc-400">Executive Review • Replaces your weekly status meeting</p>
                     </div>
                 </div>
-                <div className="flex items-center gap-2 rounded-full bg-zinc-900 border border-zinc-800 px-4 py-1.5 shadow-sm">
+                <div className="flex items-center gap-2 rounded-full bg-zinc-900 border border-zinc-800 px-4 py-1.5 shadow-sm self-start md:self-auto">
                     <Clock className="h-4 w-4 text-indigo-400" />
                     <span className="text-sm font-mono text-zinc-300">{time}</span>
                 </div>
             </header>
 
             {/* Main Vertical Scroll Area */}
-            <main className="flex-1 overflow-y-auto overflow-x-hidden p-12 space-y-12 pb-32">
+            <main className="flex-1 overflow-y-auto overflow-x-hidden p-4 md:p-12 space-y-12 pb-32">
                 {activeCards.length > 0 ? (
                     activeCards.map((card) => {
                         // Count open tickets for this card
@@ -78,7 +79,7 @@ export default function MeetingPage() {
 
 function MeetingWorkSlide({ card, ticketCount }: { card: WorkCard, ticketCount: number }) {
     return (
-        <div className="w-full max-w-6xl mx-auto rounded-3xl border border-zinc-800 bg-zinc-900/80 shadow-2xl p-8 lg:p-12 flex flex-col lg:flex-row gap-12 ring-1 ring-white/5 backdrop-blur-xl">
+        <div className="w-full max-w-6xl mx-auto rounded-3xl border border-zinc-800 bg-zinc-900/80 shadow-2xl p-6 md:p-8 lg:p-12 flex flex-col lg:flex-row gap-8 lg:gap-12 ring-1 ring-white/5 backdrop-blur-xl">
             {/* LEFT SIDE: Narrative */}
             <div className="flex-1 space-y-8">
                 <div>

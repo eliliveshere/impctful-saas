@@ -202,32 +202,32 @@ export default function TicketsPage() {
                 {selectedTicket ? (
                     <>
                         {/* Header */}
-                        <div className="h-20 border-b border-zinc-800 flex items-center justify-between px-4 md:px-6 bg-zinc-900/20">
-                            <div className="flex items-center gap-3">
+                        <div className="min-h-[5rem] border-b border-zinc-800 flex flex-col md:flex-row md:items-center justify-between px-4 py-3 md:px-6 bg-zinc-900/20 gap-3">
+                            <div className="flex items-center gap-3 w-full md:w-auto">
                                 <button
                                     onClick={() => setSelectedTicketId(null)}
-                                    className="md:hidden p-2 -ml-2 text-zinc-400 hover:text-white"
+                                    className="md:hidden p-2 -ml-2 text-zinc-400 hover:text-white shrink-0"
                                 >
                                     <ArrowLeft className="h-5 w-5" />
                                 </button>
-                                <div>
-                                    <h2 className="text-lg font-semibold text-white flex items-center gap-3">
-                                        {selectedTicket.title}
-                                        {getPriorityBadge(selectedTicket.priority)}
+                                <div className="min-w-0 flex-1 md:flex-none">
+                                    <h2 className="text-lg font-semibold text-white flex items-center gap-3 truncate">
+                                        <span className="truncate">{selectedTicket.title}</span>
+                                        <span className="shrink-0">{getPriorityBadge(selectedTicket.priority)}</span>
                                     </h2>
-                                    <div className="flex items-center gap-3 mt-1 text-xs text-zinc-500 uppercase tracking-wider">
+                                    <div className="flex items-center gap-3 mt-1 text-xs text-zinc-500 uppercase tracking-wider truncate">
                                         <span>{selectedTicket.type}</span>
                                         <span>•</span>
                                         <span>ID: {selectedTicket.id}</span>
                                     </div>
                                 </div>
-                                {linkedCard && (
-                                    <Link href={`/dashboard/work/${linkedCard.id}`} className="flex items-center gap-2 text-xs text-indigo-400 hover:text-indigo-300 bg-indigo-500/10 px-3 py-1.5 rounded-full border border-indigo-500/20">
-                                        <LinkIcon className="h-3 w-3" />
-                                        Linked: {linkedCard.title}
-                                    </Link>
-                                )}
                             </div>
+                            {linkedCard && (
+                                <Link href={`/dashboard/work/${linkedCard.id}`} className="flex items-center gap-2 text-xs text-indigo-400 hover:text-indigo-300 bg-indigo-500/10 px-3 py-1.5 rounded-full border border-indigo-500/20 self-start md:self-center shrink-0">
+                                    <LinkIcon className="h-3 w-3" />
+                                    Linked: {linkedCard.title}
+                                </Link>
+                            )}
                         </div>
 
                         {/* Waiting on Client Banner */}
