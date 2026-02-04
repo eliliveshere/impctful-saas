@@ -65,7 +65,7 @@ export default function LandingPage() {
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto leading-relaxed">
-            Stop juggling spreadhseets and disparate tools. IMPCTFUL gives you an AI-powered agency
+            Stop juggling spreadsheets and disparate tools. IMPCTFUL gives you an AI-powered agency
             workflow to plan, produce, and scale your content empire.
           </p>
 
